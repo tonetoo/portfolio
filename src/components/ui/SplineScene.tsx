@@ -9,7 +9,8 @@ type SplineSceneProps = {
 }
 
 const enableGlobalPointerTracking = (app: Application) => {
-  app.setGlobalEvents(true)
+  const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  app.setGlobalEvents(supportsHover)
 }
 
 export default function SplineScene({ scene, className }: SplineSceneProps) {

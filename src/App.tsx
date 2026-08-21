@@ -114,6 +114,12 @@ function App() {
           <div className="availability"><i /> DISPONÍVEL PARA PROJETOS</div>
         </header>
 
+        <nav className="mobile-nav" aria-label="Navegação rápida">
+          <a href="#projetos">Projetos</a>
+          <a href="#stack">Stack</a>
+          <button type="button" onClick={openContactDialog}>Contato</button>
+        </nav>
+
         <main id="conteudo">
           <section className="hero-entrance" aria-labelledby="intro-title">
             <div className="hero-copy">
@@ -137,7 +143,7 @@ function App() {
               </div>
             </div>
 
-            <div className="hero-robot" aria-label="Robô 3D interativo">
+            <div className="hero-robot" role="img" aria-label="Robô 3D interativo">
               <SplineScene scene={robotScene} className="robot-scene" />
             </div>
           </section>
@@ -193,7 +199,7 @@ function App() {
               </div>
             </section>
 
-            <section className="card stack-card" aria-labelledby="stack-title">
+            <section className="card stack-card" id="stack" aria-labelledby="stack-title">
               <div className="card-heading">
                 <h2 id="stack-title">STACK</h2>
                 <span>Ferramentas atuais</span>
@@ -203,7 +209,7 @@ function App() {
               </ul>
             </section>
 
-            <section className="card contact-card" aria-labelledby="contact-title">
+            <section className="card contact-card" id="contato" aria-labelledby="contact-title">
               <div className="card-label">[ open_channel ]</div>
               <h2 id="contact-title">Tem uma ideia?</h2>
               <p>Vamos transformar em produto.</p>

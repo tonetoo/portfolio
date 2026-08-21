@@ -25,9 +25,12 @@ export default function ASMRStaticBackground() {
     let height = 0
     let dpr = 1
     let frame = 0
+    let lastFrame = 0
     let particles: Particle[] = []
     const mouse = { x: -1000, y: -1000 }
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    const frameInterval = supportsHover ? 1000 / 60 : 1000 / 30
 
     const magneticRadius = 280
     const vortexStrength = 0.07
@@ -102,7 +105,12 @@ export default function ASMRStaticBackground() {
       if (particle.y > height + 20) particle.y = -20
     }
 
-    const render = () => {
+    const render = (now: number) => {
+      if (now - lastFrame < frameInterval) {
+        frame = requestAnimationFrame(render)
+        return
+      }
+      lastFrame = now
       ctx.fillStyle = "rgba(10, 10, 12, 0.2)"
       ctx.fillRect(0, 0, width, height)
       for (const particle of particles) {
@@ -115,11 +123,11 @@ export default function ASMRStaticBackground() {
     const resize = () => {
       width = window.innerWidth
       height = window.innerHeight
-      dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+      dpr = Math.min(window.devicePixelRatio || 1, supportsHover ? 1.5 : 1.25)
       canvas.width = Math.floor(width * dpr)
       canvas.height = Math.floor(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      const particleCount = width < 620 ? 420 : width < 1000 ? 650 : 1000
+      const particleCount = width < 620 ? 280 : width < 1000 ? 480 : 900
       particles = Array.from({ length: particleCount }, createParticle)
 
       if (reducedMotion) {
@@ -137,27 +145,21 @@ export default function ASMRStaticBackground() {
       mouse.x = -1000
       mouse.y = -1000
     }
-    const handleTouchMove = (event: TouchEvent) => {
-      const touch = event.touches[0]
-      if (touch) {
-        mouse.x = touch.clientX
-        mouse.y = touch.clientY
-      }
-    }
-
     window.addEventListener("resize", resize)
-    window.addEventListener("mousemove", handleMouseMove)
-    document.documentElement.addEventListener("mouseleave", handleMouseLeave)
-    window.addEventListener("touchmove", handleTouchMove, { passive: true })
+    if (supportsHover) {
+      window.addEventListener("mousemove", handleMouseMove)
+      document.documentElement.addEventListener("mouseleave", handleMouseLeave)
+    }
     resize()
     if (!reducedMotion) frame = requestAnimationFrame(render)
 
     return () => {
       cancelAnimationFrame(frame)
       window.removeEventListener("resize", resize)
-      window.removeEventListener("mousemove", handleMouseMove)
-      document.documentElement.removeEventListener("mouseleave", handleMouseLeave)
-      window.removeEventListener("touchmove", handleTouchMove)
+      if (supportsHover) {
+        window.removeEventListener("mousemove", handleMouseMove)
+        document.documentElement.removeEventListener("mouseleave", handleMouseLeave)
+      }
     }
   }, [])
 
