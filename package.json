@@ -14,8 +14,10 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
+    "framer-motion": "^13.1.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^5.7.0",
     "typescript": "latest",
     "vite": "latest"
   }
