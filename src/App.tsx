@@ -52,8 +52,8 @@ const projects = [
     type: "Portfólio pessoal",
     description: "Este portfólio: interface autoral, fundo interativo e experiência 3D.",
     stack: "React · Vite · Spline",
-    href: "https://portfolio-nine-orcin-6ilqiwq0t5.vercel.app",
-    previewUrl: "https://portfolio-nine-orcin-6ilqiwq0t5.vercel.app",
+    href: "https://toneto.vercel.app",
+    previewUrl: "https://toneto.vercel.app",
     previewImage: "/project-previews/portfolio.png",
   },
 ]
