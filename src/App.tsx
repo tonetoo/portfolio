@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import type { IconType } from "react-icons"
 import {
   SiDiscord,
+  SiGithub,
   SiInstagram,
   SiMongodb,
   SiNextdotjs,
@@ -42,7 +43,7 @@ const projects = [
     type: "Aplicação web",
     description: "Projeto web publicado na Vercel e desenvolvido com uma stack moderna.",
     stack: "Next.js · React · TypeScript",
-    href: "https://github.com/tonetinn/la-fontilla",
+    href: "https://la-fontilla.vercel.app",
     previewUrl: "https://la-fontilla.vercel.app",
     previewImage: "/project-previews/la-fontilla.png",
   },
@@ -51,7 +52,8 @@ const projects = [
     type: "Portfólio pessoal",
     description: "Este portfólio: interface autoral, fundo interativo e experiência 3D.",
     stack: "React · Vite · Spline",
-    href: "https://github.com/tonetinn/portfolio",
+    href: "https://portfolio-nine-orcin-6ilqiwq0t5.vercel.app",
+    previewUrl: "https://portfolio-nine-orcin-6ilqiwq0t5.vercel.app",
     previewImage: "/project-previews/portfolio.png",
   },
 ]
@@ -71,6 +73,13 @@ const contactOptions = [
   { name: "WhatsApp", detail: "+55 43 99905-0089", href: "https://wa.me/5543999050089", Icon: SiWhatsapp },
   { name: "Instagram", detail: "@jg.toneto", href: "https://instagram.com/jg.toneto", Icon: SiInstagram },
   { name: "Discord", detail: "778805593049006101", href: "https://discord.com/users/778805593049006101", Icon: SiDiscord },
+]
+
+const socialLinks = [
+  { name: "WhatsApp", href: "https://wa.me/5543999050089", Icon: SiWhatsapp },
+  { name: "Instagram", href: "https://instagram.com/jg.toneto", Icon: SiInstagram },
+  { name: "Discord", href: "https://discord.com/users/778805593049006101", Icon: SiDiscord },
+  { name: "GitHub", href: "https://github.com/tonetoo", Icon: SiGithub },
 ]
 
 function App() {
@@ -128,18 +137,31 @@ function App() {
               <ParticleText text="TONETO" className="hero-name" />
               <p className="role-line"><span>&gt;</span> SaaS &amp; Web Developer<span className="cursor" aria-hidden="true">_</span></p>
               <p className="intro-copy">Desenvolvo SaaS, dashboards e sites rápidos com uma experiência clara do primeiro clique até a entrega.</p>
-              <div className="intro-actions">
+              <div className="intro-actions" aria-label="Redes sociais e terminal">
+                {socialLinks.map(({ name, href, Icon }) => (
+                  <a
+                    className="icon-link social-action"
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={name}
+                    title={name}
+                    key={name}
+                  >
+                    <Icon />
+                  </a>
+                ))}
                 <button
-                  className="command"
+                  className="icon-link terminal-action"
                   type="button"
                   onClick={openTerminalDialog}
                   aria-haspopup="dialog"
                   aria-controls="terminal-dialog"
+                  aria-label="Abrir terminal"
+                  title="Abrir terminal"
                 >
-                  <span>contato@toneto.dev</span>
                   <TerminalIcon />
                 </button>
-                <a className="icon-link" href="#projetos" aria-label="Ver projetos"><ArrowUpRight /></a>
               </div>
             </div>
 

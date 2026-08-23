@@ -142,11 +142,13 @@ svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width:
 .role-line > span:first-child { color: var(--text); }
 .cursor { color: var(--text); animation: blink 1s steps(1) infinite; }
 .intro-copy { max-width: 38rem; margin: 0; color: var(--muted); font-family: ui-sans-serif, system-ui, sans-serif; font-size: .82rem; line-height: 1.55; }
-.intro-actions { display: flex; align-items: center; gap: .55rem; margin-top: 1rem; }
-.command, .icon-link { border: 1px solid var(--line); color: var(--muted); background: #1b1b1b; cursor: pointer; transition: color .18s ease, border-color .18s ease, background .18s ease; }
-.command:hover, .icon-link:hover { color: var(--text); border-color: #50504c; background: #202020; }
-.command { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-width: 14rem; min-height: 2.5rem; padding: 0 .8rem; border-radius: .45rem; font-size: .65rem; }
-.icon-link { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; }
+.intro-actions { display: flex; align-items: center; gap: .5rem; margin-top: 1rem; }
+.icon-link { display: grid; width: 2.6rem; height: 2.6rem; padding: 0; place-items: center; border: 1px solid var(--line); border-radius: .45rem; color: var(--muted); background: #1b1b1b; cursor: pointer; transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease; }
+.icon-link:hover { color: var(--text); border-color: #50504c; background: #202020; transform: translateY(-2px); }
+.icon-link svg { width: 1rem; height: 1rem; }
+.social-action svg { fill: currentColor; stroke: none; }
+.terminal-action { margin-left: .2rem; border-color: var(--text); color: #050505; background: var(--text); border-radius: 50%; }
+.terminal-action:hover { color: #050505; border-color: #fff; background: #fff; }
 
 .profile-card { display: flex; grid-column: span 5; min-height: 13.25rem; padding: 1.1rem 1.25rem; flex-direction: column; }
 .signal { display: flex; align-items: center; gap: .4rem; color: var(--text) !important; }
@@ -366,8 +368,7 @@ svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width:
   .hero-robot { height: clamp(18rem, 58vw, 23rem); min-height: 0; }
   .intro-copy { max-width: 34rem; font-size: .92rem; line-height: 1.6; }
   .role-line { font-size: .88rem; }
-  .command, .icon-link { min-height: 48px; }
-  .command { min-width: min(18rem, calc(100vw - 5rem)); }
+  .icon-link { min-height: 48px; }
   .icon-link { flex: 0 0 48px; width: 48px; height: 48px; }
 }
 
@@ -389,7 +390,6 @@ svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width:
   .role-line { font-size: .84rem; }
   .intro-copy { font-size: .94rem; line-height: 1.62; }
   .intro-actions { gap: .6rem; margin-top: 1.15rem; }
-  .command { flex: 1; min-width: 0; padding: 0 .9rem; font-size: .72rem; }
   .dashboard { grid-template-columns: 1fr; gap: .5rem; }
   .profile-card, .services-card, .projects-card, .stack-card, .contact-card { grid-column: 1; min-height: auto; }
   .card { border-radius: .72rem; }
@@ -458,7 +458,6 @@ svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width:
   .hero-robot { height: clamp(16.5rem, 78vw, 19.5rem); }
   .role-line { font-size: .79rem; }
   .intro-copy { font-size: .89rem; }
-  .command { font-size: .67rem; }
   .profile-card, .services-card, .projects-card, .stack-card, .contact-card { padding: .95rem; }
   .card-heading { gap: .6rem; }
   .card-heading > span { text-align: right; }
@@ -478,7 +477,6 @@ svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width:
   .topbar::after { display: none; }
   .hero-name { height: 3.7rem; }
   .intro-actions { gap: .4rem; }
-  .command { padding: 0 .65rem; font-size: .62rem; }
   .mobile-nav { gap: .3rem; margin-right: .25rem; margin-left: .25rem; }
   .mobile-nav a, .mobile-nav button { padding: 0 .25rem; font-size: .55rem; }
   .facts { grid-template-columns: 1fr; gap: .25rem; }
@@ -496,11 +494,12 @@ svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width:
 }
 
 @media (hover: none), (pointer: coarse) {
-  .command, .icon-link { min-height: 48px; }
+  .icon-link { min-height: 48px; }
   .icon-link { flex: 0 0 48px; width: 48px; height: 48px; }
   .project-item:hover { border-color: var(--line-soft); background: #111; }
   .project-item:hover h3 svg { color: var(--subtle); transform: none; }
-  .command:hover, .icon-link:hover { color: var(--muted); border-color: var(--line); background: #1b1b1b; }
+  .icon-link:hover { color: var(--muted); border-color: var(--line); background: #1b1b1b; transform: none; }
+  .terminal-action:hover { color: #050505; border-color: var(--text); background: var(--text); }
 }
 
 @media (prefers-reduced-motion: reduce) {
